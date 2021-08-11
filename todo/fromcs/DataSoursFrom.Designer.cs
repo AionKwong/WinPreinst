@@ -35,6 +35,8 @@
             this.labelProcl = new System.Windows.Forms.Label();
             this.labelCiph = new System.Windows.Forms.Label();
             this.buttonCiph = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textKey = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // richTextProcl
@@ -55,7 +57,7 @@
             // 
             // bottonProcl
             // 
-            this.bottonProcl.Location = new System.Drawing.Point(239, 196);
+            this.bottonProcl.Location = new System.Drawing.Point(239, 227);
             this.bottonProcl.Name = "bottonProcl";
             this.bottonProcl.Size = new System.Drawing.Size(85, 29);
             this.bottonProcl.TabIndex = 2;
@@ -83,7 +85,7 @@
             // 
             // buttonCiph
             // 
-            this.buttonCiph.Location = new System.Drawing.Point(237, 130);
+            this.buttonCiph.Location = new System.Drawing.Point(237, 161);
             this.buttonCiph.Name = "buttonCiph";
             this.buttonCiph.Size = new System.Drawing.Size(87, 30);
             this.buttonCiph.TabIndex = 5;
@@ -91,11 +93,29 @@
             this.buttonCiph.UseVisualStyleBackColor = true;
             this.buttonCiph.Click += new System.EventHandler(this.ButtonCiph_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(244, 79);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 15);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "设置KEY";
+            // 
+            // textKey
+            // 
+            this.textKey.Location = new System.Drawing.Point(233, 108);
+            this.textKey.Name = "textKey";
+            this.textKey.Size = new System.Drawing.Size(95, 25);
+            this.textKey.TabIndex = 7;
+            // 
             // DataSoursFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(582, 353);
+            this.Controls.Add(this.textKey);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonCiph);
             this.Controls.Add(this.labelCiph);
             this.Controls.Add(this.labelProcl);
@@ -118,5 +138,7 @@
         private System.Windows.Forms.Label labelProcl;
         private System.Windows.Forms.Label labelCiph;
         private System.Windows.Forms.Button buttonCiph;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textKey;
     }
 }
