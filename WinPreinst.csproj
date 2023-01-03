@@ -22,7 +22,7 @@
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>publish\</PublishUrl>
+    <PublishUrl>ftp://192.168.1.36/appliance/WHGJ/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -32,9 +32,11 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -66,9 +68,7 @@
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup />
-  <PropertyGroup>
-    <NoWin32Manifest>true</NoWin32Manifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
@@ -76,7 +76,22 @@
     <DelaySign>false</DelaySign>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>0D635AD0B2D8CDCBBD12A3E63E1A29D9CF29DA27</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>WinPreinst_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.framework, Version=3.12.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
@@ -109,6 +124,12 @@
     </Compile>
     <Compile Include="todo\fromcs\DataSoursFrom.Designer.cs">
       <DependentUpon>DataSoursFrom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="todo\fromcs\XMLFormatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="todo\fromcs\XMLFormatForm.Designer.cs">
+      <DependentUpon>XMLFormatForm.cs</DependentUpon>
     </Compile>
     <Compile Include="todo\util\DesPassUtil.cs" />
     <Compile Include="todo\fromcs\KettleForm.cs">
@@ -155,9 +176,13 @@
     <EmbeddedResource Include="todo\fromcs\SqlForm.resx">
       <DependentUpon>SqlForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="todo\fromcs\XMLFormatForm.resx">
+      <DependentUpon>XMLFormatForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include=".editorconfig" />
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -167,9 +192,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="WinPreinst_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="todo\ico\a10.ico" />
+    <Content Include="todo\ico\e10.ico" />
+    <Content Include="todo\ico\e2.ico" />
+    <Content Include="todo\ico\e3.ico" />
+    <Content Include="todo\ico\e4.ico" />
+    <Content Include="todo\ico\e5.ico" />
+    <Content Include="todo\ico\e6.ico" />
+    <Content Include="todo\ico\e7.ico" />
+    <Content Include="todo\ico\e8.ico" />
+    <Content Include="todo\ico\e9.ico" />
     <Content Include="todo\ico\q10.ico" />
     <Content Include="todo\ico\q8.ico" />
   </ItemGroup>

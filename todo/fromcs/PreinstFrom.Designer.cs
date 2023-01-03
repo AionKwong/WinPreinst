@@ -38,6 +38,7 @@
             this.decomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanelMain = new System.Windows.Forms.FlowLayoutPanel();
             this.winTools = new System.Windows.Forms.NotifyIcon(this.components);
+            this.XMLFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripTop.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +50,8 @@
             this.preinstTool,
             this.kettleTool,
             this.sqlAppendTool,
-            this.decomToolStripMenuItem});
+            this.decomToolStripMenuItem,
+            this.XMLFormatToolStripMenuItem});
             this.menuStripTop.Location = new System.Drawing.Point(0, 0);
             this.menuStripTop.Name = "menuStripTop";
             this.menuStripTop.Size = new System.Drawing.Size(982, 28);
@@ -67,7 +69,7 @@
             // dataSourTool
             // 
             this.dataSourTool.Name = "dataSourTool";
-            this.dataSourTool.Size = new System.Drawing.Size(224, 26);
+            this.dataSourTool.Size = new System.Drawing.Size(212, 26);
             this.dataSourTool.Text = "第三方数据源解密";
             this.dataSourTool.Click += new System.EventHandler(this.DataSourTool_Click);
             // 
@@ -109,6 +111,13 @@
             this.winTools.Text = "维护工具";
             this.winTools.Visible = true;
             // 
+            // XMLFormatToolStripMenuItem
+            // 
+            this.XMLFormatToolStripMenuItem.Name = "XMLFormatToolStripMenuItem";
+            this.XMLFormatToolStripMenuItem.Size = new System.Drawing.Size(101, 24);
+            this.XMLFormatToolStripMenuItem.Text = "XML格式化";
+            this.XMLFormatToolStripMenuItem.Click += new System.EventHandler(this.XMLFormatToolStripMenuItem_Click);
+            // 
             // preinst
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -140,6 +149,7 @@
         private System.Windows.Forms.ToolStripMenuItem sqlAppendTool;
         private System.Windows.Forms.NotifyIcon winTools;
         private System.Windows.Forms.ToolStripMenuItem decomToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem XMLFormatToolStripMenuItem;
     }
 }
 

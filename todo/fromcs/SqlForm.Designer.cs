@@ -148,7 +148,7 @@
             // labelPath
             // 
             this.labelPath.AutoSize = true;
-            this.labelPath.Location = new System.Drawing.Point(84, 265);
+            this.labelPath.Location = new System.Drawing.Point(361, 4);
             this.labelPath.Name = "labelPath";
             this.labelPath.Size = new System.Drawing.Size(0, 15);
             this.labelPath.TabIndex = 4;

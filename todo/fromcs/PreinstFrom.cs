@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using WinPreinst.todo.fromcs;
 
 namespace WinPreinst
 {
@@ -45,5 +46,14 @@ namespace WinPreinst
            
         }
 
+        private void XMLFormatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form xmlFormatForm = new XMLFormatForm
+            {
+                TopLevel = false
+            };
+            this.flowLayoutPanelMain.Controls.Add(xmlFormatForm);
+            xmlFormatForm.Show();
+        }
     }
 }
