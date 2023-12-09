@@ -55,5 +55,6 @@ namespace WinPreinst
             this.flowLayoutPanelMain.Controls.Add(xmlFormatForm);
             xmlFormatForm.Show();
         }
+
     }
 }

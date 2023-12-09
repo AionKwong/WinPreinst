@@ -33,12 +33,12 @@
             this.menuStripTop = new System.Windows.Forms.MenuStrip();
             this.preinstTool = new System.Windows.Forms.ToolStripMenuItem();
             this.dataSourTool = new System.Windows.Forms.ToolStripMenuItem();
-            this.kettleTool = new System.Windows.Forms.ToolStripMenuItem();
             this.sqlAppendTool = new System.Windows.Forms.ToolStripMenuItem();
             this.decomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.XMLFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanelMain = new System.Windows.Forms.FlowLayoutPanel();
             this.winTools = new System.Windows.Forms.NotifyIcon(this.components);
-            this.XMLFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kettleTool = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripTop.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +48,6 @@
             this.menuStripTop.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStripTop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.preinstTool,
-            this.kettleTool,
             this.sqlAppendTool,
             this.decomToolStripMenuItem,
             this.XMLFormatToolStripMenuItem});
@@ -61,24 +60,18 @@
             // preinstTool
             // 
             this.preinstTool.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dataSourTool});
+            this.dataSourTool,
+            this.kettleTool});
             this.preinstTool.Name = "preinstTool";
-            this.preinstTool.Size = new System.Drawing.Size(53, 24);
-            this.preinstTool.Text = "工具";
+            this.preinstTool.Size = new System.Drawing.Size(98, 24);
+            this.preinstTool.Text = "加解密工具";
             // 
             // dataSourTool
             // 
             this.dataSourTool.Name = "dataSourTool";
-            this.dataSourTool.Size = new System.Drawing.Size(212, 26);
-            this.dataSourTool.Text = "第三方数据源解密";
+            this.dataSourTool.Size = new System.Drawing.Size(224, 26);
+            this.dataSourTool.Text = "第三方数据源解密(DES)";
             this.dataSourTool.Click += new System.EventHandler(this.DataSourTool_Click);
-            // 
-            // kettleTool
-            // 
-            this.kettleTool.Name = "kettleTool";
-            this.kettleTool.Size = new System.Drawing.Size(135, 24);
-            this.kettleTool.Text = "KETTLE连接解密";
-            this.kettleTool.Click += new System.EventHandler(this.KettleTool_Click);
             // 
             // sqlAppendTool
             // 
@@ -93,6 +86,13 @@
             this.decomToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
             this.decomToolStripMenuItem.Text = "报文解压";
             this.decomToolStripMenuItem.Click += new System.EventHandler(this.DecomToolStripMenuItem_Click);
+            // 
+            // XMLFormatToolStripMenuItem
+            // 
+            this.XMLFormatToolStripMenuItem.Name = "XMLFormatToolStripMenuItem";
+            this.XMLFormatToolStripMenuItem.Size = new System.Drawing.Size(101, 24);
+            this.XMLFormatToolStripMenuItem.Text = "XML格式化";
+            this.XMLFormatToolStripMenuItem.Click += new System.EventHandler(this.XMLFormatToolStripMenuItem_Click);
             // 
             // flowLayoutPanelMain
             // 
@@ -111,12 +111,12 @@
             this.winTools.Text = "维护工具";
             this.winTools.Visible = true;
             // 
-            // XMLFormatToolStripMenuItem
+            // kettleTool
             // 
-            this.XMLFormatToolStripMenuItem.Name = "XMLFormatToolStripMenuItem";
-            this.XMLFormatToolStripMenuItem.Size = new System.Drawing.Size(101, 24);
-            this.XMLFormatToolStripMenuItem.Text = "XML格式化";
-            this.XMLFormatToolStripMenuItem.Click += new System.EventHandler(this.XMLFormatToolStripMenuItem_Click);
+            this.kettleTool.Name = "kettleTool";
+            this.kettleTool.Size = new System.Drawing.Size(224, 26);
+            this.kettleTool.Text = "KETTLE连接解密";
+            this.kettleTool.Click += new System.EventHandler(this.KettleTool_Click);
             // 
             // preinst
             // 
@@ -145,11 +145,11 @@
         private System.Windows.Forms.ToolStripMenuItem preinstTool;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelMain;
         private System.Windows.Forms.ToolStripMenuItem dataSourTool;
-        private System.Windows.Forms.ToolStripMenuItem kettleTool;
         private System.Windows.Forms.ToolStripMenuItem sqlAppendTool;
         private System.Windows.Forms.NotifyIcon winTools;
         private System.Windows.Forms.ToolStripMenuItem decomToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem XMLFormatToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem kettleTool;
     }
 }
 

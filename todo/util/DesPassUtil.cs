@@ -8,7 +8,7 @@ namespace WinPreinst
 {
     class DesPassUtil
     {
-        public static string def_key = "ssky";
+        public static string def_key = "djcxkjsz";
 
         public static string EncryPassword(string str) {
             try

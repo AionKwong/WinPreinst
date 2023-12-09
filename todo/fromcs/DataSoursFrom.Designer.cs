@@ -37,6 +37,8 @@
             this.buttonCiph = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textKey = new System.Windows.Forms.TextBox();
+            this.buttonCiphJAVA = new System.Windows.Forms.Button();
+            this.bottonProclJAVA = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // richTextProcl
@@ -57,11 +59,11 @@
             // 
             // bottonProcl
             // 
-            this.bottonProcl.Location = new System.Drawing.Point(239, 227);
+            this.bottonProcl.Location = new System.Drawing.Point(239, 141);
             this.bottonProcl.Name = "bottonProcl";
             this.bottonProcl.Size = new System.Drawing.Size(85, 29);
             this.bottonProcl.TabIndex = 2;
-            this.bottonProcl.Text = "<<解密";
+            this.bottonProcl.Text = "C#<<解密";
             this.bottonProcl.UseVisualStyleBackColor = true;
             this.bottonProcl.Click += new System.EventHandler(this.BottonProcl_Click);
             // 
@@ -85,18 +87,18 @@
             // 
             // buttonCiph
             // 
-            this.buttonCiph.Location = new System.Drawing.Point(237, 161);
+            this.buttonCiph.Location = new System.Drawing.Point(239, 105);
             this.buttonCiph.Name = "buttonCiph";
             this.buttonCiph.Size = new System.Drawing.Size(87, 30);
             this.buttonCiph.TabIndex = 5;
-            this.buttonCiph.Text = "加密>>";
+            this.buttonCiph.Text = "C#加密>>";
             this.buttonCiph.UseVisualStyleBackColor = true;
             this.buttonCiph.Click += new System.EventHandler(this.ButtonCiph_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(244, 79);
+            this.label1.Location = new System.Drawing.Point(245, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 15);
             this.label1.TabIndex = 6;
@@ -104,16 +106,38 @@
             // 
             // textKey
             // 
-            this.textKey.Location = new System.Drawing.Point(233, 108);
+            this.textKey.Location = new System.Drawing.Point(237, 74);
             this.textKey.Name = "textKey";
             this.textKey.Size = new System.Drawing.Size(95, 25);
             this.textKey.TabIndex = 7;
+            // 
+            // buttonCiphJAVA
+            // 
+            this.buttonCiphJAVA.Location = new System.Drawing.Point(237, 206);
+            this.buttonCiphJAVA.Name = "buttonCiphJAVA";
+            this.buttonCiphJAVA.Size = new System.Drawing.Size(87, 32);
+            this.buttonCiphJAVA.TabIndex = 8;
+            this.buttonCiphJAVA.Text = "JAVA加密";
+            this.buttonCiphJAVA.UseVisualStyleBackColor = true;
+            this.buttonCiphJAVA.Click += new System.EventHandler(this.ButtonCiphJAVA_Click);
+            // 
+            // bottonProclJAVA
+            // 
+            this.bottonProclJAVA.Location = new System.Drawing.Point(237, 255);
+            this.bottonProclJAVA.Name = "bottonProclJAVA";
+            this.bottonProclJAVA.Size = new System.Drawing.Size(87, 33);
+            this.bottonProclJAVA.TabIndex = 9;
+            this.bottonProclJAVA.Text = "JAVA解密";
+            this.bottonProclJAVA.UseVisualStyleBackColor = true;
+            this.bottonProclJAVA.Click += new System.EventHandler(this.BottonProclJAVA_Click);
             // 
             // DataSoursFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(582, 353);
+            this.Controls.Add(this.bottonProclJAVA);
+            this.Controls.Add(this.buttonCiphJAVA);
             this.Controls.Add(this.textKey);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonCiph);
@@ -140,5 +164,7 @@
         private System.Windows.Forms.Button buttonCiph;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textKey;
+        private System.Windows.Forms.Button buttonCiphJAVA;
+        private System.Windows.Forms.Button bottonProclJAVA;
     }
 }

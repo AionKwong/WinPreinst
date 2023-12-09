@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Windows.Forms;
+using WinPreinst.todo.util;
 
 namespace WinPreinst
 {
@@ -48,6 +49,39 @@ namespace WinPreinst
             //string ciphText = DesPassUtil.EncryptDES(proclText);
             this.richTextCiph.Text = ciphText;
 
+        }
+
+        private void ButtonCiphJAVA_Click(object sender, EventArgs e)
+        {
+            if (!NetJavaRun.CheckFile()) {
+                MessageBox.Show("请检查执行程序目录下是否存在DesPassWord.class文件");
+                return;
+            }
+            string ciphText =  this.richTextProcl.Text;
+            if (string.IsNullOrEmpty(ciphText))
+            {
+                return;
+            }
+
+            string ciphReslut = NetJavaRun.Exec("1", ciphText);
+            this.richTextCiph.Text = ciphReslut;
+
+        }
+
+        private void BottonProclJAVA_Click(object sender, EventArgs e)
+        {
+            if (!NetJavaRun.CheckFile())
+            {
+                MessageBox.Show("请检查执行程序目录下是否存在DesPassWord.class文件");
+                return;
+            }
+            string proclText = this.richTextCiph.Text;
+            if (string.IsNullOrEmpty(proclText))
+            {
+                return;
+            }
+            string proclReslut = NetJavaRun.Exec("2", proclText);
+            this.richTextProcl.Text = proclReslut;
         }
     }
 }
