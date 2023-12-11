@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security.Cryptography;
 using System.Windows.Forms;
 using WinPreinst.todo.util;
 
@@ -15,8 +14,9 @@ namespace WinPreinst
         private void BottonProcl_Click(object sender, EventArgs e)
         {
             string keyText = this.textKey.Text;
-            if (string.IsNullOrEmpty(keyText))
+            if (string.IsNullOrEmpty(keyText) || keyText.Length != 8)
             {
+                MessageBox.Show(this, NetJavaRun.msg);
                 return;
             }
 
@@ -34,8 +34,9 @@ namespace WinPreinst
         private void ButtonCiph_Click(object sender, EventArgs e)
         {
             string keyText = this.textKey.Text;
-            if (string.IsNullOrEmpty(keyText))
+            if (string.IsNullOrEmpty(keyText) || keyText.Length != 8)
             {
+                MessageBox.Show(NetJavaRun.msg);
                 return;
             }
             string proclText = this.richTextProcl.Text;
@@ -54,7 +55,7 @@ namespace WinPreinst
         private void ButtonCiphJAVA_Click(object sender, EventArgs e)
         {
             if (!NetJavaRun.CheckFile()) {
-                MessageBox.Show("请检查执行程序目录下是否存在DesPassWord.class文件");
+                MessageBox.Show(this,NetJavaRun.checkMsg);
                 return;
             }
             string ciphText =  this.richTextProcl.Text;
@@ -72,7 +73,7 @@ namespace WinPreinst
         {
             if (!NetJavaRun.CheckFile())
             {
-                MessageBox.Show("请检查执行程序目录下是否存在DesPassWord.class文件");
+                MessageBox.Show(this, NetJavaRun.checkMsg);
                 return;
             }
             string proclText = this.richTextCiph.Text;

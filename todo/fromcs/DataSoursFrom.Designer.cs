@@ -98,11 +98,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(245, 56);
+            this.label1.Location = new System.Drawing.Point(228, 53);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 15);
+            this.label1.Size = new System.Drawing.Size(116, 15);
             this.label1.TabIndex = 6;
-            this.label1.Text = "设置KEY";
+            this.label1.Text = "设置8位KEY(C#)";
             // 
             // textKey
             // 
