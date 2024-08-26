@@ -37,5 +37,10 @@ namespace WinPreinst
             string result = KettlePassUtil.EncryptPassword(proclText);
             this.richTextCiphKettle.Text = result;
         }
+
+        private void RichTextProclKettle_MouseEnter(object sender, EventArgs e)
+        {
+            StringUtils.CleanFormat();
+        }
     }
 }

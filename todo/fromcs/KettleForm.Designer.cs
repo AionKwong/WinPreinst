@@ -92,6 +92,7 @@
             this.richTextProclKettle.Size = new System.Drawing.Size(180, 266);
             this.richTextProclKettle.TabIndex = 6;
             this.richTextProclKettle.Text = "";
+            this.richTextProclKettle.MouseEnter += new System.EventHandler(this.RichTextProclKettle_MouseEnter);
             // 
             // KettleForm
             // 
