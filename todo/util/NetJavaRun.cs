@@ -11,6 +11,7 @@ namespace WinPreinst.todo.util
         public const string msg = "使用C#加解密,请设置密码key(长度8位),且加解密必须使用相同的key";
 
         public const string checkMsg = "请检查执行程序目录下是否存在DesPassWord.class文件";
+        private const string Value = "&exit";
 
         public static String Exec(string type, string execText) {
             // 创建一个新的进程对象
@@ -44,7 +45,7 @@ namespace WinPreinst.todo.util
             if (string.IsNullOrEmpty(result)) {
                 return "";
             }
-            int index = result.IndexOf("&exit");
+            int index = result.IndexOf(Value);
             if (index > 0 )
             {
                 result = result.Substring(index+5).Trim();

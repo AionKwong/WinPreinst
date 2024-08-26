@@ -48,6 +48,7 @@
             this.richTextProcl.Size = new System.Drawing.Size(180, 266);
             this.richTextProcl.TabIndex = 0;
             this.richTextProcl.Text = "";
+            this.richTextProcl.MouseEnter += new System.EventHandler(this.RichTextProcl_MouseEnter);
             // 
             // richTextCiph
             // 
@@ -148,7 +149,7 @@
             this.Controls.Add(this.richTextProcl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DataSoursFrom";
-            this.Text = "第三方数据源解密";
+            this.Text = "第三方数据源解密(使用JAVA加解密)";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -56,5 +56,14 @@ namespace WinPreinst
             xmlFormatForm.Show();
         }
 
+        private void DecToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form decBase64Form = new DecXMLForm
+            {
+                TopLevel = false
+            };
+            this.flowLayoutPanelMain.Controls.Add(decBase64Form);
+            decBase64Form.Show();
+        }
     }
 }

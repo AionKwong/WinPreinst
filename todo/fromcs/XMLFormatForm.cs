@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -15,48 +8,35 @@ namespace WinPreinst.todo.fromcs
 {
     public partial class XMLFormatForm : Form
     {
-        private const string fix_str = "\\";
+        
+        private const string MSG_01 = "未输入XML字符串";
 
         public XMLFormatForm()
         {
             InitializeComponent();
         }
 
-        private void AddFileButton_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                InitialDirectory = Environment.CurrentDirectory,
-                Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*",
-                FilterIndex = 2,
-                RestoreDirectory = true
-            };     //显示选择文件对话框
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                this.DirectorXMLlabel.Text = openFileDialog.FileName;          //显示文件路径
-                this.XMLMessageLabel.Text = "已加载需格式化的XML文件";
-            }
-        }
-
         private void FormatButton_Click(object sender, EventArgs e)
         {
-            string inputPath = this.DirectorXMLlabel.Text;
-            if (string.IsNullOrEmpty(inputPath))
+            string inputXml = this.richTextBoxIn.Text;
+            if (string.IsNullOrEmpty(inputXml))
             {
-                this.XMLMessageLabel.Text = "未选择需要格式化的XML文件";
+                this.XMLMessageLabel.Text = MSG_01;
                 return;
             }
 
             XmlTextWriter xtw = null;
             try {
-                XmlDocument xd = new XmlDocument() { XmlResolver = null };
-               // xd.Load(inputPath);
-                XmlReader reader = XmlReader.Create(inputPath, new XmlReaderSettings() { XmlResolver = null });
+                XmlDocument xd = new XmlDocument() {
+                    XmlResolver = null
+                };
+                StringReader sreader = new StringReader(inputXml);
+                XmlReaderSettings xrs = new XmlReaderSettings() { XmlResolver = null };
+                XmlReader reader = XmlReader.Create(sreader, xrs);
                 xd.Load(reader);
+
                 StringBuilder sb = new StringBuilder();
                 StringWriter sw = new StringWriter(sb);
-    
                 xtw = new XmlTextWriter(sw)
                 {
                     Formatting = Formatting.Indented,
@@ -64,18 +44,19 @@ namespace WinPreinst.todo.fromcs
                     IndentChar = '\t'
                 };
                 xd.WriteTo(xtw);
-                SaveFile(sb.ToString());
+                xtw.Flush();
+                this.richTextBoxOut.Text = sb.ToString();
                 Clipboard.SetDataObject(sb.ToString());
-                MessageBox.Show("格式化XML完成并复制到剪切板");
-                
             } catch (IOException ex) {
                 this.XMLMessageLabel.Text = ex.Message;
                 MessageBox.Show("失败");
             }
             finally
             {
-                if (xtw != null)
+                if (xtw != null) {
                     xtw.Close();
+                }
+                    
             }
             
         }
@@ -134,8 +115,9 @@ namespace WinPreinst.todo.fromcs
                 sw = new StreamWriter(fs, Encoding.Default);
                 sw.Write(xmlText.Trim());
                 sw.Flush();
-                this.XMLMessageLabel.Text = "格式完成: 请前往查看文件-->";
-                this.labelOpenPath.Text = Environment.CurrentDirectory + fix_str + fileName;
+                this.XMLMessageLabel.Text = "已保存文件，请前往查看-->";
+                
+                this.labelOpenPath.Text = Environment.CurrentDirectory + Path.AltDirectorySeparatorChar + fileName;
 
             }
             catch (IOException ex)
@@ -150,6 +132,20 @@ namespace WinPreinst.todo.fromcs
                 }
 
             }
+        }
+
+        private void SaveFileButton_Click(object sender, EventArgs e)
+        {
+            string xml = this.richTextBoxOut.Text;
+            if (!string.IsNullOrEmpty(xml)) 
+            {
+                SaveFile(xml);
+            }
+        }
+
+        private void RichTextBoxIn_MouseEnter(object sender, EventArgs e)
+        {
+            StringUtils.CleanFormat();
         }
     }
 }

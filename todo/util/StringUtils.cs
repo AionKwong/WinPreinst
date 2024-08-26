@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace WinPreinst
 {
@@ -51,5 +48,19 @@ namespace WinPreinst
             }
             return exportSql;
         }
+
+
+        public static void CleanFormat() {
+            // 鼠标进入时，清除掉粘贴板的格式
+            IDataObject dataObj = Clipboard.GetDataObject();
+            if (dataObj.GetDataPresent(DataFormats.StringFormat))
+            {
+                var txt = (string)Clipboard.GetData(DataFormats.StringFormat);
+                Clipboard.Clear();
+                Clipboard.SetData(DataFormats.StringFormat, txt);
+            }
+        }
+
+
     }
 }

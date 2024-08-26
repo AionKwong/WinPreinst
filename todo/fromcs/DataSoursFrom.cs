@@ -84,5 +84,10 @@ namespace WinPreinst
             string proclReslut = NetJavaRun.Exec("2", proclText);
             this.richTextProcl.Text = proclReslut;
         }
+
+        private void RichTextProcl_MouseEnter(object sender, EventArgs e)
+        {
+            StringUtils.CleanFormat();
+        }
     }
 }
