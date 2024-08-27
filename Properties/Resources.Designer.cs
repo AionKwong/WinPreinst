@@ -47,8 +47,8 @@ namespace WinPreinst.Properties {
         }
         
         /// <summary>
-        ///   重写当前线程的 CurrentUICulture 属性
-        ///   重写当前线程的 CurrentUICulture 属性。
+        ///   重写当前线程的 CurrentUICulture 属性，对
+        ///   使用此强类型资源类的所有资源查找执行重写。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static global::System.Globalization.CultureInfo Culture {
@@ -57,6 +57,150 @@ namespace WinPreinst.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 txt files (*.txt)|*.txt|All files (*.*)|*.* 的本地化字符串。
+        /// </summary>
+        internal static string fileFromat {
+            get {
+                return ResourceManager.GetString("fileFromat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 生成成功并复制到剪切板 的本地化字符串。
+        /// </summary>
+        internal static string messageAppendOk {
+            get {
+                return ResourceManager.GetString("messageAppendOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 删除成功 的本地化字符串。
+        /// </summary>
+        internal static string messageDelOk {
+            get {
+                return ResourceManager.GetString("messageDelOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 格式出错 的本地化字符串。
+        /// </summary>
+        internal static string messageFromatErr {
+            get {
+                return ResourceManager.GetString("messageFromatErr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 未正确选择必要参数 的本地化字符串。
+        /// </summary>
+        internal static string messageLoadParamErr {
+            get {
+                return ResourceManager.GetString("messageLoadParamErr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 参数加载成功 的本地化字符串。
+        /// </summary>
+        internal static string messageLoadParamOk {
+            get {
+                return ResourceManager.GetString("messageLoadParamOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 未正确选择带问号的SQL语句 的本地化字符串。
+        /// </summary>
+        internal static string messageLoadSQLErr {
+            get {
+                return ResourceManager.GetString("messageLoadSQLErr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 带问号的SQL加载成功 的本地化字符串。
+        /// </summary>
+        internal static string messageLoadSQLOK {
+            get {
+                return ResourceManager.GetString("messageLoadSQLOK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 文件不存在 的本地化字符串。
+        /// </summary>
+        internal static string messageNotFile {
+            get {
+                return ResourceManager.GetString("messageNotFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 未输入XML字符串 的本地化字符串。
+        /// </summary>
+        internal static string messageNotInputXML {
+            get {
+                return ResourceManager.GetString("messageNotInputXML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 参数文件不存在 的本地化字符串。
+        /// </summary>
+        internal static string messageNotSqlParam {
+            get {
+                return ResourceManager.GetString("messageNotSqlParam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 SQL文件不存在 的本地化字符串。
+        /// </summary>
+        internal static string messageNotSqlPath {
+            get {
+                return ResourceManager.GetString("messageNotSqlPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 路径不能为空 的本地化字符串。
+        /// </summary>
+        internal static string messagePathNotNull {
+            get {
+                return ResourceManager.GetString("messagePathNotNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 保存出错 的本地化字符串。
+        /// </summary>
+        internal static string messageSaveErr {
+            get {
+                return ResourceManager.GetString("messageSaveErr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 保存成功 的本地化字符串。
+        /// </summary>
+        internal static string messageSaveOk {
+            get {
+                return ResourceManager.GetString("messageSaveOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 操作提示 的本地化字符串。
+        /// </summary>
+        internal static string messageType {
+            get {
+                return ResourceManager.GetString("messageType", resourceCulture);
             }
         }
     }

@@ -9,12 +9,12 @@ namespace WinPreinst.todo.util
     {
         public static string DecBase64(string base64) 
         {
-            string result = "";
+            string result;
             try {
                 byte[] decompressedBytes = Decompress(base64);
                 result = System.Text.Encoding.GetEncoding("GBK").GetString(decompressedBytes);
             } catch (Exception e) {
-                e.GetBaseException();
+                throw new Exception(e.Message);
             }
             return result;
         }

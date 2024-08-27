@@ -14,40 +14,41 @@ namespace WinPreinst
             InitializeComponent();
         }
 
-        private const string fix_str = "\\";
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                InitialDirectory = Environment.CurrentDirectory,
-                Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*",
-                FilterIndex = 2,
-                RestoreDirectory = true
-            };     //显示选择文件对话框
+            using (OpenFileDialog openFileDialog = new OpenFileDialog()) {
+                openFileDialog.Filter = Properties.Resources.fileFromat;
+                openFileDialog.InitialDirectory = Environment.CurrentDirectory;
+                openFileDialog.RestoreDirectory = true;
+                openFileDialog.FilterIndex = 2;
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                this.Directorlabel.Text = openFileDialog.FileName;          //显示文件路径
-                this.MessageLabel.Text = "带问号的SQL加载成功";
-            }
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    this.Directorlabel.Text = openFileDialog.FileName;          //显示文件路径
+                    this.MessageLabel.Text = Properties.Resources.messageLoadSQLOK;
+                }
+
+            }    //显示选择文件对话框
+
+                
         }
 
         private void ParamsButton_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                InitialDirectory = Environment.CurrentDirectory,
-                Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*",
-                FilterIndex = 2,
-                RestoreDirectory = true
-            };     //显示选择文件对话框
+            using (OpenFileDialog openFileDialog = new OpenFileDialog()) {
+                openFileDialog.Filter = Properties.Resources.fileFromat;
+                openFileDialog.InitialDirectory = Environment.CurrentDirectory;
+                openFileDialog.RestoreDirectory = true;
+                openFileDialog.FilterIndex = 2;
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                this.Paramslabel.Text = openFileDialog.FileName;          //显示文件路径
-                this.MessageLabel.Text = "参数加载成功";
-            }
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    this.Paramslabel.Text = openFileDialog.FileName;          //显示文件路径
+                    this.MessageLabel.Text = Properties.Resources.messageLoadParamOk;
+                }
+            } 
+            
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -56,17 +57,17 @@ namespace WinPreinst
             String parFilePath = this.Paramslabel.Text;
             if (string.IsNullOrEmpty(sqlFilePath) || string.IsNullOrEmpty(parFilePath) )
             {
-                this.MessageLabel.Text = "未正确选择必要参数";
+                this.MessageLabel.Text = Properties.Resources.messageLoadParamErr;
                 return;
             }
             if (!File.Exists(sqlFilePath))
             {
-                MessageBox.Show("SQL文件不存在!");
+                MessageBox.Show(Properties.Resources.messageNotSqlPath);
                 return;
             }
             if (!File.Exists(parFilePath))
             {
-                MessageBox.Show("参数文件不存在!");
+                MessageBox.Show(Properties.Resources.messageNotSqlParam);
                 return;
             }
             StreamReader sr = null;
@@ -77,7 +78,7 @@ namespace WinPreinst
                 String sqlText = sr.ReadToEnd().TrimStart();
                 if (sqlText.IndexOf('?') < 0)
                 {
-                    this.MessageLabel.Text = "未正确选择带问号的SQL语句";
+                    this.MessageLabel.Text = Properties.Resources.messageLoadSQLErr;
                     return;
                 }
                 srp = new StreamReader(parFilePath, System.Text.Encoding.UTF8);
@@ -85,12 +86,12 @@ namespace WinPreinst
                 String sqlTxt = StringUtils.GetFullSql(sqlText, praText);
                 SaveFile(sqlTxt);
                 Clipboard.SetDataObject(sqlTxt);
-                MessageBox.Show("生成成功并复制到剪切板");
+                MessageBox.Show(Properties.Resources.messageAppendOk);
             }
             catch (IOException ex)
             {
                 this.MessageLabel.Text = ex.Message;
-                MessageBox.Show("失败");
+                MessageBox.Show(Properties.Resources.messageSaveErr);
             }
             finally
             {
@@ -110,7 +111,7 @@ namespace WinPreinst
         {
             FileStream fs;
             StreamWriter sw = null;
-            string nowTime = DateTime.Now.ToFileTime().ToString();
+            long nowTime = DateTime.Now.ToFileTime();
             string fileName = "sql" + nowTime + ".txt";
             try
             {
@@ -118,8 +119,10 @@ namespace WinPreinst
                 sw = new StreamWriter(fs, Encoding.Default);
                 sw.Write(sqlTxt.Trim());
                 sw.Flush();
-                this.MessageLabel.Text = "成功生成: 请前往查看文件-->";
-                this.labelPath.Text = Environment.CurrentDirectory + fix_str + fileName;
+                MessageLabel.Text = Properties.Resources.messageSaveOk;
+
+                FileInfo fileInfo = new FileInfo(fileName);
+                this.labelPath.Text = fileInfo.FullName;
   
             }
             catch (IOException ex)
@@ -140,17 +143,18 @@ namespace WinPreinst
         {
             if (string.IsNullOrEmpty(this.labelPath.Text))
             {
-                MessageBox.Show("路径不能为空！", "操作提示");
+                MessageBox.Show(Properties.Resources.messagePathNotNull, Properties.Resources.messageType);
                 return;
             }
             //先判断文件是否存在，不存在则提示 
             if (!System.IO.File.Exists(this.labelPath.Text))
             {
-                MessageBox.Show("指定文件不存在！", "操作提示");
+                MessageBox.Show(Properties.Resources.messageNotFile, Properties.Resources.messageType);
                 return;
             }
             //存在则打开 
-            System.Diagnostics.Process.Start("explorer.exe", this.labelPath.Text);
+            FileInfo file = new FileInfo(this.labelPath.Text);
+            System.Diagnostics.Process.Start("explorer.exe", file.FullName);
 
         }
 
@@ -158,19 +162,21 @@ namespace WinPreinst
         {
             if (string.IsNullOrEmpty(this.labelPath.Text))
             {
-                MessageBox.Show("路径不能为空！", "操作提示");
+                MessageBox.Show(Properties.Resources.messagePathNotNull, Properties.Resources.messageType);
                 return;
             }
             if (!File.Exists(this.labelPath.Text))
             {
-                MessageBox.Show("已经被删除!");
+                MessageBox.Show(Properties.Resources.messageNotFile);
                 return;
             }
             try {
                 File.Delete(this.labelPath.Text);
-                MessageBox.Show(this.labelPath.Text+"删除成功！", "操作提示");
+                FileInfo fileInfo = new FileInfo(this.labelPath.Text);
+                
+                MessageBox.Show(fileInfo.FullName + Properties.Resources.messageDelOk, Properties.Resources.messageType);
             } catch (IOException ioe) {
-                MessageBox.Show(ioe.Message, "操作提示");
+                MessageBox.Show(ioe.Message, Properties.Resources.messageType);
             }
             
         }

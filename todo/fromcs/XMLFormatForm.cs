@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
@@ -8,8 +9,6 @@ namespace WinPreinst.todo.fromcs
 {
     public partial class XMLFormatForm : Form
     {
-        
-        private const string MSG_01 = "未输入XML字符串";
 
         public XMLFormatForm()
         {
@@ -21,7 +20,7 @@ namespace WinPreinst.todo.fromcs
             string inputXml = this.richTextBoxIn.Text;
             if (string.IsNullOrEmpty(inputXml))
             {
-                this.XMLMessageLabel.Text = MSG_01;
+                this.XMLMessageLabel.Text = Properties.Resources.messageNotInputXML;
                 return;
             }
 
@@ -32,24 +31,26 @@ namespace WinPreinst.todo.fromcs
                 };
                 StringReader sreader = new StringReader(inputXml);
                 XmlReaderSettings xrs = new XmlReaderSettings() { XmlResolver = null };
-                XmlReader reader = XmlReader.Create(sreader, xrs);
-                xd.Load(reader);
+                using (XmlReader reader = XmlReader.Create(sreader, xrs)) {
+                    xd.Load(reader);
 
-                StringBuilder sb = new StringBuilder();
-                StringWriter sw = new StringWriter(sb);
-                xtw = new XmlTextWriter(sw)
-                {
-                    Formatting = Formatting.Indented,
-                    Indentation = 1,
-                    IndentChar = '\t'
-                };
-                xd.WriteTo(xtw);
-                xtw.Flush();
-                this.richTextBoxOut.Text = sb.ToString();
-                Clipboard.SetDataObject(sb.ToString());
+                    StringBuilder sb = new StringBuilder();
+                    StringWriter sw = new StringWriter(sb);
+                    xtw = new XmlTextWriter(sw)
+                    {
+                        Formatting = Formatting.Indented,
+                        Indentation = 1,
+                        IndentChar = '\t'
+                    };
+                    xd.WriteTo(xtw);
+                    xtw.Flush();
+                    this.richTextBoxOut.Text = sb.ToString();
+                    Clipboard.SetDataObject(sb.ToString());
+                }
+                
             } catch (IOException ex) {
                 this.XMLMessageLabel.Text = ex.Message;
-                MessageBox.Show("失败");
+                MessageBox.Show(Properties.Resources.messageFromatErr, Properties.Resources.messageType);
             }
             finally
             {
@@ -65,39 +66,41 @@ namespace WinPreinst.todo.fromcs
         {
             if (string.IsNullOrEmpty(this.labelOpenPath.Text))
             {
-                MessageBox.Show("路径不能为空！", "操作提示");
+                MessageBox.Show(Properties.Resources.messagePathNotNull, Properties.Resources.messageType);
                 return;
             }
             //先判断文件是否存在，不存在则提示 
-            if (!System.IO.File.Exists(this.labelOpenPath.Text))
+            if (!File.Exists(this.labelOpenPath.Text))
             {
-                MessageBox.Show("指定文件不存在！", "操作提示");
+                MessageBox.Show(Properties.Resources.messageNotFile, Properties.Resources.messageType);
                 return;
             }
+            FileInfo file = new FileInfo(this.labelOpenPath.Text);
             //存在则打开 
-            System.Diagnostics.Process.Start("explorer.exe", this.labelOpenPath.Text);
+            System.Diagnostics.Process.Start("explorer.exe", file.FullName);
         }
 
         private void DeleteXMLButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(this.labelOpenPath.Text))
             {
-                MessageBox.Show("路径不能为空！", "操作提示");
+                MessageBox.Show(Properties.Resources.messagePathNotNull, Properties.Resources.messageType);
                 return;
             }
             if (!File.Exists(this.labelOpenPath.Text))
             {
-                MessageBox.Show("已经被删除!");
+                MessageBox.Show(Properties.Resources.messageNotFile);
                 return;
             }
             try
             {
                 File.Delete(this.labelOpenPath.Text);
-                MessageBox.Show(this.labelOpenPath.Text + "删除成功！", "操作提示");
+                FileInfo fileInfo = new FileInfo(this.labelOpenPath.Text);
+                MessageBox.Show(fileInfo.FullName + Properties.Resources.messageDelOk, Properties.Resources.messageType);
             }
             catch (IOException ioe)
             {
-                MessageBox.Show(ioe.Message, "操作提示");
+                MessageBox.Show(ioe.Message, Properties.Resources.messageType);
             }
 
         }
@@ -107,7 +110,7 @@ namespace WinPreinst.todo.fromcs
         {
             FileStream fs;
             StreamWriter sw = null;
-            string nowTime = DateTime.Now.ToFileTime().ToString();
+            long nowTime = DateTime.Now.ToFileTime();
             string fileName = "XML" + nowTime + ".txt";
             try
             {
@@ -115,9 +118,10 @@ namespace WinPreinst.todo.fromcs
                 sw = new StreamWriter(fs, Encoding.Default);
                 sw.Write(xmlText.Trim());
                 sw.Flush();
-                this.XMLMessageLabel.Text = "已保存文件，请前往查看-->";
                 
-                this.labelOpenPath.Text = Environment.CurrentDirectory + Path.AltDirectorySeparatorChar + fileName;
+                XMLMessageLabel.Text = Properties.Resources.messageSaveOk;
+                FileInfo fileInfo = new FileInfo(fileName);
+                this.labelOpenPath.Text = fileInfo.FullName;
 
             }
             catch (IOException ex)

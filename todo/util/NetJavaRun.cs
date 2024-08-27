@@ -45,7 +45,7 @@ namespace WinPreinst.todo.util
             if (string.IsNullOrEmpty(result)) {
                 return "";
             }
-            int index = result.IndexOf(Value);
+            int index = result.IndexOf(Value,StringComparison.CurrentCulture);
             if (index > 0 )
             {
                 result = result.Substring(index+5).Trim();
