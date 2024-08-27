@@ -37,6 +37,7 @@ namespace WinPreinst.todo.fromcs
             this.decButton = new System.Windows.Forms.Button();
             this.copyButton = new System.Windows.Forms.Button();
             this.cleanButton = new System.Windows.Forms.Button();
+            this.decMessageLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelInputText
@@ -78,7 +79,7 @@ namespace WinPreinst.todo.fromcs
             // 
             // decButton
             // 
-            this.decButton.Location = new System.Drawing.Point(198, 544);
+            this.decButton.Location = new System.Drawing.Point(447, 551);
             this.decButton.Name = "decButton";
             this.decButton.Size = new System.Drawing.Size(95, 37);
             this.decButton.TabIndex = 4;
@@ -88,7 +89,7 @@ namespace WinPreinst.todo.fromcs
             // 
             // copyButton
             // 
-            this.copyButton.Location = new System.Drawing.Point(469, 544);
+            this.copyButton.Location = new System.Drawing.Point(718, 551);
             this.copyButton.Name = "copyButton";
             this.copyButton.Size = new System.Drawing.Size(86, 37);
             this.copyButton.TabIndex = 5;
@@ -98,7 +99,7 @@ namespace WinPreinst.todo.fromcs
             // 
             // cleanButton
             // 
-            this.cleanButton.Location = new System.Drawing.Point(335, 544);
+            this.cleanButton.Location = new System.Drawing.Point(584, 551);
             this.cleanButton.Name = "cleanButton";
             this.cleanButton.Size = new System.Drawing.Size(93, 37);
             this.cleanButton.TabIndex = 6;
@@ -106,11 +107,21 @@ namespace WinPreinst.todo.fromcs
             this.cleanButton.UseVisualStyleBackColor = true;
             this.cleanButton.Click += new System.EventHandler(this.CleanButton_Click);
             // 
+            // decMessageLabel
+            // 
+            this.decMessageLabel.AutoSize = true;
+            this.decMessageLabel.ForeColor = System.Drawing.Color.Red;
+            this.decMessageLabel.Location = new System.Drawing.Point(12, 562);
+            this.decMessageLabel.Name = "decMessageLabel";
+            this.decMessageLabel.Size = new System.Drawing.Size(0, 15);
+            this.decMessageLabel.TabIndex = 7;
+            // 
             // DecXMLForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(816, 603);
+            this.Controls.Add(this.decMessageLabel);
             this.Controls.Add(this.cleanButton);
             this.Controls.Add(this.copyButton);
             this.Controls.Add(this.decButton);
@@ -135,5 +146,6 @@ namespace WinPreinst.todo.fromcs
         private System.Windows.Forms.Button decButton;
         private System.Windows.Forms.Button copyButton;
         private System.Windows.Forms.Button cleanButton;
+        private System.Windows.Forms.Label decMessageLabel;
     }
 }

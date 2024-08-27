@@ -13,15 +13,27 @@ namespace WinPreinst.todo.fromcs
 
         private void DecButton_Click(object sender, EventArgs e)
         {
+            this.decMessageLabel.Text = "";
             string base64Text = this.richTextBase64.Text;
             if (string.IsNullOrEmpty(base64Text))
             {
                 return;
             }
-            string xml = Base64DecUtil.DecBase64(base64Text);
+
+            string xml;
+            try {
+                xml = Base64DecUtil.DecBase64(base64Text);
+            }
+            catch (Exception ex)
+            {
+                this.decMessageLabel.Text = ex.Message;
+                xml = "";
+            }
+            
             if (string.IsNullOrEmpty(xml))
             {
-                MessageBox.Show("请确认输入是否为base64字符串");
+                MessageBox.Show(Properties.Resources.messageInputISBase64);
+
             }
             else {
                 this.richTextBoxXML.Text = xml;
@@ -31,16 +43,19 @@ namespace WinPreinst.todo.fromcs
         private void CopyButton_Click(object sender, EventArgs e)
         {
             string xml = this.richTextBoxXML.Text;
-            if (string.IsNullOrEmpty(xml)) { 
+            if (!string.IsNullOrEmpty(xml)) {
+                this.decMessageLabel.Text = "";
+                Clipboard.SetDataObject(xml);
+                MessageBox.Show(Properties.Resources.messageCopyOk);
             }
-            Clipboard.SetDataObject(xml);
-            MessageBox.Show("已复制到剪切板");
+           
         }
 
         private void CleanButton_Click(object sender, EventArgs e)
         {
             this.richTextBoxXML.Text = "";
             this.richTextBase64.Text = "";
+            this.decMessageLabel.Text = "";
         }
 
         private void RichTextBase64_MouseEnter(object sender, EventArgs e)

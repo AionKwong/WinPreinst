@@ -79,6 +79,15 @@ namespace WinPreinst.Properties {
         }
         
         /// <summary>
+        ///   查找类似 复制成功 的本地化字符串。
+        /// </summary>
+        internal static string messageCopyOk {
+            get {
+                return ResourceManager.GetString("messageCopyOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 删除成功 的本地化字符串。
         /// </summary>
         internal static string messageDelOk {
@@ -93,6 +102,15 @@ namespace WinPreinst.Properties {
         internal static string messageFromatErr {
             get {
                 return ResourceManager.GetString("messageFromatErr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 请确认输入是否为base64字符串 的本地化字符串。
+        /// </summary>
+        internal static string messageInputISBase64 {
+            get {
+                return ResourceManager.GetString("messageInputISBase64", resourceCulture);
             }
         }
         

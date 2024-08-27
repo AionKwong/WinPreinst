@@ -124,11 +124,17 @@
   <data name="messageAppendOk" xml:space="preserve">
     <value>生成成功并复制到剪切板</value>
   </data>
+  <data name="messageCopyOk" xml:space="preserve">
+    <value>复制成功</value>
+  </data>
   <data name="messageDelOk" xml:space="preserve">
     <value>删除成功</value>
   </data>
   <data name="messageFromatErr" xml:space="preserve">
     <value>格式出错</value>
+  </data>
+  <data name="messageInputISBase64" xml:space="preserve">
+    <value>请确认输入是否为base64字符串</value>
   </data>
   <data name="messageLoadParamErr" xml:space="preserve">
     <value>未正确选择必要参数</value>

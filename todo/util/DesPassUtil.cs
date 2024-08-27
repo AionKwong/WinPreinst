@@ -13,30 +13,34 @@ namespace WinPreinst
         public static string EncryPassword(string str) {
             try
             {
-                DESCryptoServiceProvider des = new DESCryptoServiceProvider();
-                byte[] inputByteArray = Encoding.GetEncoding("UTF-8").GetBytes(str);
-
-                //建立加密对象的密钥和偏移量    
-                //原文使用ASCIIEncoding.ASCII方法的GetBytes方法    
-                //使得输入密码必须输入英文文本  
-                des.Mode = CipherMode.ECB;
-                des.Padding = PaddingMode.PKCS7;
-                des.Key = ASCIIEncoding.UTF8.GetBytes(def_key);
-                des.IV = ASCIIEncoding.UTF8.GetBytes(def_key);
-                
-                MemoryStream ms = new MemoryStream();
-                CryptoStream cs = new CryptoStream(ms, des.CreateEncryptor(), CryptoStreamMode.Write);
-
-                cs.Write(inputByteArray, 0, inputByteArray.Length);
-                cs.FlushFinalBlock();
-
-                StringBuilder ret = new StringBuilder();
-                foreach (byte b in ms.ToArray())
+                using (DESCryptoServiceProvider des = new DESCryptoServiceProvider())
                 {
-                    ret.AppendFormat("{0:X2}", b);
+                    byte[] inputByteArray = Encoding.GetEncoding("UTF-8").GetBytes(str);
+
+                    //建立加密对象的密钥和偏移量    
+                    //原文使用ASCIIEncoding.ASCII方法的GetBytes方法    
+                    //使得输入密码必须输入英文文本  
+                    des.Mode = CipherMode.ECB;
+                    des.Padding = PaddingMode.PKCS7;
+                    des.Key = ASCIIEncoding.UTF8.GetBytes(def_key);
+                    des.IV = ASCIIEncoding.UTF8.GetBytes(def_key);
+
+                    MemoryStream ms = new MemoryStream();
+                    using (CryptoStream cs = new CryptoStream(ms, des.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(inputByteArray, 0, inputByteArray.Length);
+                        cs.FlushFinalBlock();
+                    }
+
+                    StringBuilder ret = new StringBuilder();
+                    foreach (byte b in ms.ToArray())
+                    {
+                        ret.AppendFormat("{0:X2}", b);
+                    }
+                    return ret.ToString().ToLower(new CultureInfo("en-US", false));
                 }
-                return ret.ToString().ToLower(new CultureInfo("en-US", false));
-             } catch (CryptographicException e)
+            }
+            catch (CryptographicException e)
             {
                 Console.WriteLine("A Cryptographic error occurred: {0}", e.Message);
                 return null;

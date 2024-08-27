@@ -14,7 +14,7 @@ namespace WinPreinst.todo.util
                 byte[] decompressedBytes = Decompress(base64);
                 result = System.Text.Encoding.GetEncoding("GBK").GetString(decompressedBytes);
             } catch (Exception e) {
-                throw new Exception(e.Message);
+                throw new Exception("输入的不是有效的BASE64字符串。",e);
             }
             return result;
         }

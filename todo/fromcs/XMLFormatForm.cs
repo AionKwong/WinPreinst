@@ -17,6 +17,7 @@ namespace WinPreinst.todo.fromcs
 
         private void FormatButton_Click(object sender, EventArgs e)
         {
+            this.XMLMessageLabel.Text = "";
             string inputXml = this.richTextBoxIn.Text;
             if (string.IsNullOrEmpty(inputXml))
             {
@@ -25,13 +26,15 @@ namespace WinPreinst.todo.fromcs
             }
 
             XmlTextWriter xtw = null;
-            try {
+            
                 XmlDocument xd = new XmlDocument() {
                     XmlResolver = null
                 };
                 StringReader sreader = new StringReader(inputXml);
                 XmlReaderSettings xrs = new XmlReaderSettings() { XmlResolver = null };
                 using (XmlReader reader = XmlReader.Create(sreader, xrs)) {
+                try
+                {
                     xd.Load(reader);
 
                     StringBuilder sb = new StringBuilder();
@@ -47,18 +50,22 @@ namespace WinPreinst.todo.fromcs
                     this.richTextBoxOut.Text = sb.ToString();
                     Clipboard.SetDataObject(sb.ToString());
                 }
-                
-            } catch (IOException ex) {
-                this.XMLMessageLabel.Text = ex.Message;
-                MessageBox.Show(Properties.Resources.messageFromatErr, Properties.Resources.messageType);
-            }
-            finally
-            {
-                if (xtw != null) {
-                    xtw.Close();
+                catch (Exception ex)
+                {
+                    this.XMLMessageLabel.Text = ex.Message;
+                    MessageBox.Show(Properties.Resources.messageFromatErr, Properties.Resources.messageType);
                 }
-                    
+                finally
+                {
+                    if (xtw != null)
+                    {
+                        xtw.Close();
+                    }
+
+                }
             }
+                
+            
             
         }
 
@@ -73,6 +80,7 @@ namespace WinPreinst.todo.fromcs
             if (!File.Exists(this.labelOpenPath.Text))
             {
                 MessageBox.Show(Properties.Resources.messageNotFile, Properties.Resources.messageType);
+                this.labelOpenPath.Text = "";
                 return;
             }
             FileInfo file = new FileInfo(this.labelOpenPath.Text);
@@ -97,6 +105,7 @@ namespace WinPreinst.todo.fromcs
                 File.Delete(this.labelOpenPath.Text);
                 FileInfo fileInfo = new FileInfo(this.labelOpenPath.Text);
                 MessageBox.Show(fileInfo.FullName + Properties.Resources.messageDelOk, Properties.Resources.messageType);
+                this.labelOpenPath.Text = "";
             }
             catch (IOException ioe)
             {
@@ -144,6 +153,7 @@ namespace WinPreinst.todo.fromcs
             if (!string.IsNullOrEmpty(xml)) 
             {
                 SaveFile(xml);
+                this.XMLMessageLabel.Text = "";
             }
         }
 
