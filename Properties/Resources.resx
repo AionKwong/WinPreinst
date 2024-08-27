@@ -124,6 +124,9 @@
   <data name="messageAppendOk" xml:space="preserve">
     <value>生成成功并复制到剪切板</value>
   </data>
+  <data name="messageBase64Exp" xml:space="preserve">
+    <value>输入的不是有效的BASE64字符串。</value>
+  </data>
   <data name="messageCopyOk" xml:space="preserve">
     <value>复制成功</value>
   </data>

@@ -79,6 +79,15 @@ namespace WinPreinst.Properties {
         }
         
         /// <summary>
+        ///   查找类似 输入的不是有效的BASE64字符串。 的本地化字符串。
+        /// </summary>
+        internal static string messageBase64Exp {
+            get {
+                return ResourceManager.GetString("messageBase64Exp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 复制成功 的本地化字符串。
         /// </summary>
         internal static string messageCopyOk {
